@@ -162,7 +162,7 @@ button:active {
     border:solid 7px #424242;
     display:block;
     position:absolute;
-    box-shadow: 0px 0px 0px 50px white ;
+    box-shadow: 0px 0px 0px 50px white ; /*hides the tag lines to the left of the curve*/
     top:-15%;
     left:50%;
     content:"";
@@ -241,4 +241,25 @@ button:active {
     background: blue;
 }
 
+@media(orientation:portrait) and (max-height:1000px){
+    h1{
+        font-size: 2em;
+    }
+    .prompt{
+        margin: 3em 0 0 40%;
+        position: absolute;
+    }
+    .scissors{
+        width: 11em;
+        margin: 75vh 0 0 18%;
+    }
+    .paper{
+        width: 11em;
+        margin: 55vh 0 0 18%;
+    }
+    .rock{
+        width: 11em;
+        margin: 35vh 0 0 18%;
+    }
+}
 
