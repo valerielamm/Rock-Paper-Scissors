@@ -1,5 +1,5 @@
-function rps(){
-        var userChoice = prompt("Do you choose rock, paper or scissors?");
+function rps(userChoice){
+        //determines the computer choice
         var computerChoice = Math.random();
         if (computerChoice < 0.34) {
             computerChoice = "rock";
@@ -7,34 +7,71 @@ function rps(){
             computerChoice = "paper";
         } else {
             computerChoice = "scissors";
-        } console.log("Computer: " + computerChoice);
-
+        } 
+        
+        //prompt for choices
         function choices(){
-            return ( "Computer chose " + computerChoice + ". You chose " + userChoice + ".");
-        }    
+            return ( "Computer chose " + computerChoice + ".");
+        }
     
+        //the result boxes behind the tags
+        var resultScissors = document.getElementById("resultScissors");
+        var resultRock = document.getElementById("resultRock");
+        var resultPaper = document.getElementById("resultPaper");   
+    
+        //makes result boxes tuck back behind tag
+        function reseting(resultRock, resultPaper, resultScissors){
+            if (resultRock.style.transform === "translate(20px, 0px)"){
+                resultRock.style.transform = "translate(0px, 0px)";
+            }
+            else if (resultPaper.style.transform === "translate(20px, 0px)"){
+                resultPaper.style.transform = "translate(0px, 0px)";
+            }
+            else{
+                resultScissors.style.transform = "translate(0px, 0px)";
+            }
+        }
+        reseting(resultRock, resultPaper, resultScissors);
+        
+        //determines who wins
         function compare(choice1, choice2)
         {
             
-         if (choice1 != "rock" && choice1 != "paper" && choice1 != "scissors")
+         if (choice1 === choice2)
          {
-             return ( "Typo! Try Again!");
+             if (choice2 === "rock")
+           {
+               resultRock.style.fill = "#8c8c8c"; //result tag color
+               resultRock.style.transform = "translate(20px, 0px)"; //result tag slides to the right
+               return ( "It's a tie!"); //result prompt
+           }
+             else if (choice2 === "paper")
+           {
+               resultPaper.style.fill = "#8c8c8c";
+               resultPaper.style.transform = "translate(20px, 0px)";
+               return ( "It's a tie!");
+           }
+             else 
+           {
+               resultScissors.style.fill = "#8c8c8c";
+               resultScissors.style.transform = "translate(20px, 0px)";
+               return ( "It's a tie!");
+           }
          }
-            
-         else if (choice1 === choice2)
-         {
-             return ( "The result is a tie!");
-         }
-
+        
          else if ( choice1 === "rock")
          {
            if (choice2 === "scissors")
            {
-               return ( "rock wins");
+               resultRock.style.fill = "#248e4f";
+               resultRock.style.transform = "translate(20px, 0px)";
+               return ( "You won.");
            }
            else
            {
-               return ( "paper wins")
+               resultRock.style.fill = "#912323";
+               resultRock.style.transform = "translate(20px, 0px)";
+               return ( "You lost.")
            }
          }
 
@@ -42,27 +79,48 @@ function rps(){
          {
            if (choice2 === "scissors")
            {
-               return ( "scissors wins");
+               resultPaper.style.fill = "#912323";
+               resultPaper.style.transform = "translate(20px, 0px)";
+               return ( "You lost.");
            }
            else
            {
-               return ( "paper wins")
+               resultPaper.style.fill = "#248e4f";
+               resultPaper.style.transform = "translate(20px, 0px)";
+               return ( "You won.")
            }
          }
 
-          else if ( choice1 === "scissors")
+          else
          {
            if (choice2 === "rock")
            {
-               return ( "rock wins");
+               resultScissors.style.fill = "#912323";
+               resultScissors.style.transform = "translate(20px, 0px)";
+               return ( "You lost.");
            }
            else
            {
-               return ( "scissors wins")
+               resultScissors.style.fill = "#248e4f";
+               resultScissors.style.transform = "translate(20px, 0px)";
+               return ( "You won.")
            }
-         }
+         } 
         }
+    
         document.getElementById('result').innerHTML = compare(userChoice, computerChoice);
+    
         document.getElementById('choices').innerHTML = choices();
     }
+
+//hover over tags
+function chbg(color, theicon) {
+    if (color === "darker"){
+        color = "#d6d6d6";
+    }
+    else {
+        color = "#EAEAEA";
+    }
+    document.getElementById(theicon).style.fill = color;
+}   
 
