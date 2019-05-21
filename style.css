@@ -154,7 +154,7 @@ button:active {
     position:fixed; 
     width: 30%;
     overflow:hidden; /*container that holds curve*/
-    pointer-events: none
+    pointer-events: none;
 }
 .curved-line::before {
     height:133%;
